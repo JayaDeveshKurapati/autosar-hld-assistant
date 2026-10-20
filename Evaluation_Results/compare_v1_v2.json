@@ -1,0 +1,68 @@
+[
+  {
+    "kind": "component",
+    "change": "added",
+    "item": "VehicleSpeedEstimator",
+    "detail": ""
+  },
+  {
+    "kind": "interface",
+    "change": "added",
+    "item": "IfActuatorCmd",
+    "detail": ""
+  },
+  {
+    "kind": "port",
+    "change": "added",
+    "item": "VehicleSpeedEstimator.VehicleSpeedOut",
+    "detail": ""
+  },
+  {
+    "kind": "port",
+    "change": "changed",
+    "item": "ActuatorDriver.TorqueIn",
+    "detail": "interface: IfActuatorCmd -> IfBrakeTorque"
+  },
+  {
+    "kind": "port",
+    "change": "changed",
+    "item": "WheelSpeedProvider.WheelSpeedOut",
+    "detail": "dtype: uint32 -> uint16"
+  },
+  {
+    "kind": "connection",
+    "change": "added",
+    "item": "VehicleSpeedEstimator.VehicleSpeedOut -> BrakeController.VehicleSpeedIn",
+    "detail": ""
+  },
+  {
+    "kind": "runnable",
+    "change": "added",
+    "item": "BrakeController.Run_BrakeCtrl_5ms",
+    "detail": ""
+  },
+  {
+    "kind": "runnable",
+    "change": "added",
+    "item": "VehicleSpeedEstimator.Run_VehSpeed_10ms",
+    "detail": ""
+  },
+  {
+    "kind": "runnable",
+    "change": "removed",
+    "item": "BrakeController.Run_BrakeCtrl_10ms",
+    "detail": ""
+  },
+  {
+    "kind": "dependency",
+    "change": "added",
+    "item": "BrakeController -> VehicleSpeedEstimator",
+    "detail": ""
+  },
+  {
+    "kind": "dependency",
+    "change": "removed",
+    "item": "BrakeController -> DiagManager",
+    "detail": ""
+  }
+]

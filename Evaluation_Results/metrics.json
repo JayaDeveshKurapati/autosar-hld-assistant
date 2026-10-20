@@ -1,0 +1,19 @@
+{
+  "documents": 3,
+  "findings_by_severity": {
+    "error": 5,
+    "warning": 2,
+    "info": 10
+  },
+  "reviews": {
+    "confirmed": 0,
+    "dismissed": 0,
+    "open": 17
+  },
+  "finding_precision_pct": null,
+  "requirement_trace_pct": 0.0,
+  "requirements": 2,
+  "questions": 5,
+  "answer_rate_pct": 80.0,
+  "groundedness_pct": 100.0
+}

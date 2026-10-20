@@ -1,0 +1,92 @@
+[
+  {
+    "id": "9d057053e6",
+    "rule": "DATATYPE_MISMATCH",
+    "severity": "error",
+    "message": "Connected ports differ in data type: WheelSpeedProvider.WheelSpeedOut is uint32, BrakeController.WheelSpeedIn is uint16.",
+    "page": 1,
+    "section": "4.1 Torque request flow",
+    "evidence": "WheelSpeedProvider.WheelSpeedOut -> BrakeController.WheelSpeedIn",
+    "review": null
+  },
+  {
+    "id": "0e01ff1099",
+    "rule": "INTERFACE_MISMATCH",
+    "severity": "error",
+    "message": "BrakeController.BrakeTorqueOut (IfBrakeTorque) is connected to ActuatorDriver.TorqueIn (IfActuatorCmd).",
+    "page": 1,
+    "section": "4.1 Torque request flow",
+    "evidence": "BrakeController.BrakeTorqueOut -> ActuatorDriver.TorqueIn",
+    "review": null
+  },
+  {
+    "id": "0eb94063c9",
+    "rule": "SIGNAL_TYPE_CONFLICT",
+    "severity": "error",
+    "message": "Signal 'WheelSpeed' is specified with conflicting types: uint16, uint32.",
+    "page": 1,
+    "section": "3.1 WheelSpeedProvider (ApplicationSwComponentType)",
+    "evidence": "- P-Port WheelSpeedOut: interface IfWheelSpeed, signal WheelSpeed, type uint32",
+    "review": null
+  },
+  {
+    "id": "d23fec4d1a",
+    "rule": "UNDEFINED_COMPONENT",
+    "severity": "error",
+    "message": "BrakeController depends on 'DiagManager' which has no component description.",
+    "page": 1,
+    "section": "3.2 BrakeController (ApplicationSwComponentType)",
+    "evidence": "Depends on: WheelSpeedProvider, DiagManager",
+    "review": null
+  },
+  {
+    "id": "5026bcf43e",
+    "rule": "UNDEFINED_INTERFACE",
+    "severity": "error",
+    "message": "Port ActuatorDriver.TorqueIn uses interface 'IfActuatorCmd' which is not defined in the document.",
+    "page": 1,
+    "section": "3.3 ActuatorDriver (ComplexDeviceDriver)",
+    "evidence": "- R-Port TorqueIn: interface IfActuatorCmd, signal BrakeTorqueRequest, type float32",
+    "review": null
+  },
+  {
+    "id": "ac26929deb",
+    "rule": "UNCONNECTED_REQUIRE_PORT",
+    "severity": "warning",
+    "message": "Require-port BrakeController.VehicleSpeedIn has no provider connection (missing dependency?).",
+    "page": 1,
+    "section": "3.2 BrakeController (ApplicationSwComponentType)",
+    "evidence": "- R-Port VehicleSpeedIn: interface IfVehicleSpeed, signal VehicleSpeed, type uint16",
+    "review": null
+  },
+  {
+    "id": "a1ed35f424",
+    "rule": "RATE_MISMATCH",
+    "severity": "info",
+    "message": "BrakeController runs every 10 ms but ActuatorDriver every 2 ms (producer is slower; the consumer may read stale data).",
+    "page": 1,
+    "section": "4.1 Torque request flow",
+    "evidence": "BrakeController.BrakeTorqueOut -> ActuatorDriver.TorqueIn",
+    "review": null
+  },
+  {
+    "id": "444fdaa222",
+    "rule": "RATE_MISMATCH",
+    "severity": "info",
+    "message": "WheelSpeedProvider runs every 5 ms but BrakeController every 10 ms (consumer is slower; samples may be dropped).",
+    "page": 1,
+    "section": "4.1 Torque request flow",
+    "evidence": "WheelSpeedProvider.WheelSpeedOut -> BrakeController.WheelSpeedIn",
+    "review": null
+  },
+  {
+    "id": "54c2fa898f",
+    "rule": "REQUIREMENT_UNTRACED",
+    "severity": "info",
+    "message": "Requirement R-27d447 references no known component, interface or signal.",
+    "page": 1,
+    "section": "5 Timing and Safety Notes",
+    "evidence": "The end-to-end latency from wheel pulse to valve command shall not exceed 20 ms.",
+    "review": null
+  }
+]

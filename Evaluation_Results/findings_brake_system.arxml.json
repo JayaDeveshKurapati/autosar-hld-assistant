@@ -1,0 +1,42 @@
+[
+  {
+    "id": "789d830453",
+    "rule": "UNCONNECTED_REQUIRE_PORT",
+    "severity": "warning",
+    "message": "Require-port BrakeController.DiagOut has no provider connection (missing dependency?).",
+    "page": 1,
+    "section": "ARXML /Components/BrakeController",
+    "evidence": "<R-PORT-PROTOTYPE> DiagOut",
+    "review": null
+  },
+  {
+    "id": "73ff47dc59",
+    "rule": "NO_RUNNABLE",
+    "severity": "info",
+    "message": "Component ActuatorDriver has no runnable described.",
+    "page": 1,
+    "section": "ARXML /Components/ActuatorDriver",
+    "evidence": "<COMPLEX-DEVICE-DRIVER-SW-COMPONENT-TYPE> ActuatorDriver",
+    "review": null
+  },
+  {
+    "id": "632212a3ca",
+    "rule": "NO_RUNNABLE",
+    "severity": "info",
+    "message": "Component BrakeSystem has no runnable described.",
+    "page": 1,
+    "section": "ARXML /Components/BrakeSystem",
+    "evidence": "<COMPOSITION-SW-COMPONENT-TYPE> BrakeSystem",
+    "review": null
+  },
+  {
+    "id": "444fdaa222",
+    "rule": "RATE_MISMATCH",
+    "severity": "info",
+    "message": "WheelSpeedProvider runs every 5 ms but BrakeController every 10 ms (consumer is slower; samples may be dropped).",
+    "page": 1,
+    "section": "ARXML /Components/BrakeSystem",
+    "evidence": "<ASSEMBLY-SW-CONNECTOR> c1",
+    "review": null
+  }
+]

@@ -1,0 +1,12 @@
+streamlit
+fastapi
+uvicorn
+python-multipart
+scikit-learn
+pandas
+pypdf
+python-docx
+requests
+pytest
+httpx
+reportlab

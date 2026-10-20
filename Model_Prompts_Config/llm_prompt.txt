@@ -1,0 +1,11 @@
+LLM answer prompt used by Code/hld_assistant/qa.py (_llm_answer). Used only when HLD_LLM_URL and HLD_LLM_MODEL are set.
+Request: POST {HLD_LLM_URL}/chat/completions, temperature 0, single user message:
+
+Answer the question using ONLY the numbered excerpts from an AUTOSAR High-Level Design document. Cite excerpts as [n] after each claim. If the excerpts do not contain the answer, say so.
+
+Excerpts:
+[n] (<doc_name> v<version>, p.<page>, <section>)
+<section text>
+...
+
+Question: <user question>

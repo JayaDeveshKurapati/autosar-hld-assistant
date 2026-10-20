@@ -1,0 +1,44 @@
+Brake Control System - AUTOSAR High-Level Design
+Document version 1.0
+
+1. Introduction
+This document describes the software architecture of the Brake Control ECU. The ECU computes the brake torque
+request from the driver demand and measured wheel speed, and forwards it to the actuator driver.
+
+2. Interface Definitions
+2.1 IfWheelSpeed (SenderReceiver Interface)
+- Data element WheelSpeed: uint16
+2.2 IfBrakeTorque (SenderReceiver Interface)
+- Data element BrakeTorqueRequest: float32
+2.3 IfVehicleSpeed (SenderReceiver Interface)
+- Data element VehicleSpeed: uint16
+
+3. Software Components
+3.1 WheelSpeedProvider (ApplicationSwComponentType)
+The WheelSpeedProvider acquires raw wheel pulses and publishes the filtered wheel speed.
+- P-Port WheelSpeedOut: interface IfWheelSpeed, signal WheelSpeed, type uint32
+Runnable Run_WheelSpeed_5ms (period 5 ms) samples and filters the pulse counters.
+
+3.2 BrakeController (ApplicationSwComponentType)
+The BrakeController computes the brake torque request using wheel speed and vehicle speed.
+- R-Port WheelSpeedIn: interface IfWheelSpeed, signal WheelSpeed, type uint16
+- R-Port VehicleSpeedIn: interface IfVehicleSpeed, signal VehicleSpeed, type uint16
+- P-Port BrakeTorqueOut: interface IfBrakeTorque, signal BrakeTorqueRequest, type float32
+Runnable Run_BrakeCtrl_10ms (period 10 ms) executes the torque control law and plausibility checks.
+Depends on: WheelSpeedProvider, DiagManager
+
+3.3 ActuatorDriver (ComplexDeviceDriver)
+The ActuatorDriver converts the torque request into hydraulic valve commands.
+- R-Port TorqueIn: interface IfActuatorCmd, signal BrakeTorqueRequest, type float32
+Runnable Run_Actuator_2ms (period 2 ms) drives the valve outputs.
+Depends on: BrakeController
+
+4. Functional Flows and Connections
+4.1 Torque request flow
+The wheel speed is provided to the controller and the resulting torque request is forwarded to the actuator.
+WheelSpeedProvider.WheelSpeedOut -> BrakeController.WheelSpeedIn
+BrakeController.BrakeTorqueOut -> ActuatorDriver.TorqueIn
+
+5. Timing and Safety Notes
+The end-to-end latency from wheel pulse to valve command shall not exceed 20 ms. Plausibility failures of the wheel
+speed signal lead to a degraded mode in which the BrakeController limits the requested torque.

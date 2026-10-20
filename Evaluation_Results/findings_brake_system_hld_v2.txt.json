@@ -1,0 +1,42 @@
+[
+  {
+    "id": "68fec5ce6d",
+    "rule": "RATE_MISMATCH",
+    "severity": "info",
+    "message": "BrakeController runs every 5 ms but ActuatorDriver every 2 ms (producer is slower; the consumer may read stale data).",
+    "page": 1,
+    "section": "4.1 Torque request flow",
+    "evidence": "BrakeController.BrakeTorqueOut -> ActuatorDriver.TorqueIn",
+    "review": null
+  },
+  {
+    "id": "045aaa715b",
+    "rule": "RATE_MISMATCH",
+    "severity": "info",
+    "message": "VehicleSpeedEstimator runs every 10 ms but BrakeController every 5 ms (producer is slower; the consumer may read stale data).",
+    "page": 1,
+    "section": "4.1 Torque request flow",
+    "evidence": "VehicleSpeedEstimator.VehicleSpeedOut -> BrakeController.VehicleSpeedIn",
+    "review": null
+  },
+  {
+    "id": "0c3599c0ee",
+    "rule": "REQUIREMENT_UNTRACED",
+    "severity": "info",
+    "message": "Requirement R-6d92a8 references no known component, interface or signal.",
+    "page": 1,
+    "section": "5 Timing and Safety Notes",
+    "evidence": "The end-to-end latency from wheel pulse to valve command shall not exceed 15 ms.",
+    "review": null
+  },
+  {
+    "id": "c825909fb4",
+    "rule": "TIMING_BUDGET_EXCEEDED",
+    "severity": "info",
+    "message": "Requirement R-6d92a8 allows 15 ms but chain VehicleSpeedEstimator -> BrakeController -> ActuatorDriver has an estimated worst-case sampling latency of 17 ms (requirement is not tied to a component, so the longest chain was used).",
+    "page": 1,
+    "section": "5 Timing and Safety Notes",
+    "evidence": "The end-to-end latency from wheel pulse to valve command shall not exceed 15 ms.",
+    "review": null
+  }
+]

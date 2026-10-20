@@ -1,0 +1,4 @@
+document,errors,warnings,info,requirements,test_cases
+brake_system_hld_v1.txt,5,1,3,1,10
+brake_system_hld_v2.txt,0,0,4,1,14
+brake_system.arxml,0,1,3,0,8
